@@ -14,7 +14,7 @@ binmode STDERR, ":encoding(utf8)";
 use Gzip::Zopfli 'ZopfliCompress';
 my $in = 'something' x 1000;
 my $out = ZopfliCompress ($in);
-cmp_ok ($out, '<', length ($in), "compressed something");
+cmp_ok (length ($out), '<', length ($in), "compressed something");
 done_testing ();
 # Local variables:
 # mode: perl
