@@ -5,6 +5,14 @@
 
 #include "gzip-zopfli-perl.c"
 
+#ifdef WIN32
+#undef malloc
+#undef free
+#endif /* def WIN32 */
+
+#include "zopfli-one.c"
+
+
 typedef gzip_zopfli_t * Gzip__Zopfli;
 
 MODULE=Gzip::Zopfli PACKAGE=Gzip::Zopfli
