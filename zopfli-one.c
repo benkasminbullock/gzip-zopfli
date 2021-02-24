@@ -3309,11 +3309,11 @@ void ZopfliInitCache(size_t blocksize, ZopfliLongestMatchCache* lmc) {
   lmc->length = (unsigned short*)malloc(sizeof(unsigned short) * blocksize);
   lmc->dist = (unsigned short*)malloc(sizeof(unsigned short) * blocksize);
   /* Rather large amount of memory. */
-  lmc->sublen = (unsigned char*)malloc(ZOPFLI_CACHE_LENGTH * 3 * blocksize);
+  lmc->sublen = (unsigned char*)malloc((unsigned long) (ZOPFLI_CACHE_LENGTH * 3 * blocksize));
   if(lmc->sublen == NULL) {
     fprintf(stderr,
         "Error: Out of memory. Tried allocating %lu bytes of memory.\n",
-        ZOPFLI_CACHE_LENGTH * 3 * blocksize);
+        (unsigned long) (ZOPFLI_CACHE_LENGTH * 3 * blocksize));
     exit (EXIT_FAILURE);
   }
 

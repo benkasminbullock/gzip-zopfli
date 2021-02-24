@@ -1,5 +1,3 @@
-
-
 #!/home/ben/software/install/bin/perl
 use Z;
 use C::Tokenize;
@@ -18,9 +16,11 @@ for my $file (@c) {
     my $text = read_text ($file);
     $c .= $text;
 }
-for (0..10) {
-    $c =~ s!^#\s*include\s*"(.*?)"!/* $1 */\n$h2file{$1}!gm;
+# Do this until all the #include "" are gone.
+while ($c =~ s!^#\s*include\s*"(.*?)"!/* $1 */\n$h2file{$1}!gm) {
 }
+# Suppress compiler warnings.
+$c =~ s!(ZOPFLI_CACHE_LENGTH \* 3 \* blocksize)!(unsigned long) ($1)!g;
 #$c =~ s!^#\s*include\s*"(.*?)"!/* $1 */\n$h2file{$1}!gm;
 write_text ($out, $c);
 do_system ("cc -Wall -c $out");
