@@ -3,14 +3,13 @@
 #include "XSUB.h"
 #include "ppport.h"
 
-#include "gzip-zopfli-perl.c"
-
 #ifdef WIN32
 #undef malloc
 #undef free
 #endif /* def WIN32 */
 
 #include "zopfli-one.c"
+#include "gzip-zopfli-perl.c"
 
 
 typedef gzip_zopfli_t * Gzip__Zopfli;
@@ -19,6 +18,13 @@ MODULE=Gzip::Zopfli PACKAGE=Gzip::Zopfli
 
 PROTOTYPES: DISABLE
 
-BOOT:
-	/* Gzip__Zopfli_error_handler = perl_error_handler; */
-
+SV *
+ZopfliCompress(in, ...)
+	SV * in;
+PREINIT:
+	gzip_zopfli_t gz = {0};
+CODE:
+	gzip_zopfli_init (& gz);
+	RETVAL = gzip_zopfli (& gz, in);
+OUTPUT:
+	RETVAL
