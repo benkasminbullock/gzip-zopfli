@@ -24,3 +24,6 @@ $c =~ s!(ZOPFLI_CACHE_LENGTH \* 3 \* blocksize)!(unsigned long) ($1)!g;
 #$c =~ s!^#\s*include\s*"(.*?)"!/* $1 */\n$h2file{$1}!gm;
 write_text ($out, $c);
 do_system ("cc -Wall -c $out");
+my $o = $out;
+$o =~ s!\.c!.o!;
+unlink ($o) or die $!;
