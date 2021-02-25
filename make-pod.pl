@@ -32,6 +32,7 @@ my $output = "$Bin/lib/Gzip/$pod";
 my %vars = (
     info => $info,
     commit => $commit,
+    zopfli_version => '1.0.3',
 );
 
 my $tt = Template->new (

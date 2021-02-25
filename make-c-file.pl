@@ -1,7 +1,6 @@
 #!/home/ben/software/install/bin/perl
 use Z;
-use C::Tokenize;
-my $dir = '/home/ben/software/zopfli/src/zopfli';
+my $dir = '/home/ben/software/zopfli/zopfli-zopfli-1.0.3/src/zopfli';
 my @c = <$dir/*.c>;
 my @h = <$dir/*.h>;
 my %h2file;

@@ -17,11 +17,11 @@ This method was added in version [% version %] of the module.
 
 =head1 NAME
 
-[% info.colon %] - abstract here.
+[% info.colon %] - Zopfli deflate/gzip compression library
 
 =head1 SYNOPSIS
 
-    use [% info.colon %];
+[% example("synopsis") %]
 
 =head1 VERSION
 
@@ -29,9 +29,14 @@ This documents version [% info.version %] of [% info.name %]
 corresponding to L<git commit [% commit.commit %]|[% info.repo
 %]/commit/[% commit.commit %]> released on [% commit.date %].
 
+This distribution also contains the source code of the Zopfli library
+version [% zopfli_version %]. See L</COPYRIGHT & LICENCE> for the
+conditions under which this source code may be used (Apache Licence,
+copyright by Google Inc.)
+
 =head1 DESCRIPTION
 
-Zopfli compression library.
+This module offers access to the Zopfli compression library from Perl.
 
 =head1 FUNCTIONS
 
@@ -39,16 +44,57 @@ Zopfli compression library.
 
     my $out = ZopfliCompress ($in, %options);
 
-Options are not supported in this release.
+This currently supports Gzip format compression only.
+
+Options are as follows:
+
+=over
+
+=item blocksplitting
+
+    my $out = ZopfliCompress ($in, blocksplitting => 0);
+
+Boolean. Apply blocksplitting or not? Default value is true.
+
+=item blocksplittingmax
+
+    my $out = ZopfliCompress ($in, blocksplittingmax => 0);
+
+Maximum number of blocks to split into. Default is 15. Set to 0 for
+unlimited.
+
+=item numiterations
+
+    my $out = ZopfliCompress ($in, numiterations => 1);
+
+Number of iterations. Default value is 15.
+
+=item type
+
+    my $out = ZopfliCompress ($in, type => 'zlib');
+
+Type of compression. Either C<gzip> (the default), C<zlib>, or C<deflate>.
+
+=back
 
 =head1 SEE ALSO
 
-L<Compress::Zopfli>
+=head2 About Zopfli
+
+See L<https://github.com/google/zopfli>
+
+=head2 CPAN
+
+=over
+
+=item L<Compress::Zopfli>
+
+=back
 
 [% INCLUDE "author" %]
 
-The underlying Zopfli is included in the distribution is copyright by
-Google Inc and licensed under the Apache Licence as follows:
+The underlying Zopfli library is included in this distribution. Zopfli
+is copyright and licensed as follows:
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
@@ -65,5 +111,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 Author: lode.vandevenne@gmail.com (Lode Vandevenne)
+
 Author: jyrki.alakuijala@gmail.com (Jyrki Alakuijala)
 
