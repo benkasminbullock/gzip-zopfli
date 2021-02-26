@@ -36,7 +36,8 @@ copyright by Google Inc.)
 
 =head1 DESCRIPTION
 
-This module offers access to the Zopfli compression library from Perl.
+This module offers access to the Zopfli compression library from
+Perl. Please note that the Zopfli does not offer decompression.
 
 =head1 FUNCTIONS
 
@@ -44,9 +45,7 @@ This module offers access to the Zopfli compression library from Perl.
 
     my $out = ZopfliCompress ($in, %options);
 
-This currently supports Gzip format compression only.
-
-Options are as follows:
+Compress C<$in> into C<$out>. The possible options are as follows:
 
 =over
 
@@ -87,7 +86,31 @@ See L<https://github.com/google/zopfli>
 
 =over
 
+=item Other implementations of Zopfli
+
+=over
+
 =item L<Compress::Zopfli>
+
+=back
+
+=item Other gzip/deflate/zlib compression libraries
+
+=over
+
+=item L<Compress::Raw::Zlib>
+
+Interface to the Zlib compression library.
+
+=item L<Gzip::Libdeflate>
+
+Gzip compression and decompression with the new libdeflate library.
+
+=item L<Gzip::Faster>
+
+Alternative interface to zlib.
+
+=back
 
 =back
 
