@@ -5,7 +5,7 @@ use Carp;
 use utf8;
 require Exporter;
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw/ZopfliCompress ZopfliCompressFile/;
+our @EXPORT_OK = qw/zopfli_compress zopfli_compress_file/;
 our %EXPORT_TAGS = (
     all => \@EXPORT_OK,
 );
@@ -41,7 +41,7 @@ sub make_out
     return $out;
 }
 
-sub ZopfliCompressFile
+sub zopfli_compress_file
 {
     my ($o, %options) = @_;
     my $from = get_from (%options);

@@ -4,7 +4,7 @@ use GZT;
 
 use_ok ('Gzip::Zopfli');
 my $in = 'something' x 1000;
-my $out = ZopfliCompress ($in);
+my $out = zopfli_compress ($in);
 cmp_ok (length ($out), '<', length ($in), "compressed something");
 
 done_testing ();

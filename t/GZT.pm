@@ -3,10 +3,10 @@ use warnings;
 use strict;
 use utf8;
 use Test::More;
-use Gzip::Zopfli 'ZopfliCompress';
+use Gzip::Zopfli 'zopfli_compress';
 require Exporter;
 our @ISA = qw(Exporter);
-our @EXPORT = (qw/ZopfliCompress/, @Test::More::EXPORT);
+our @EXPORT = (qw/zopfli_compress/, @Test::More::EXPORT);
 # Set all the file handles to UTF-8
 
 my $builder = Test::More->builder;

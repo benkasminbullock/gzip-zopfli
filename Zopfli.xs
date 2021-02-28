@@ -18,7 +18,7 @@ MODULE=Gzip::Zopfli PACKAGE=Gzip::Zopfli
 PROTOTYPES: DISABLE
 
 SV *
-ZopfliCompress(in, ...)
+zopfli_compress(in, ...)
 	SV * in;
 PREINIT:
 	gzip_zopfli_t gz = {0};
