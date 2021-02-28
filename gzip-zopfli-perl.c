@@ -3,6 +3,7 @@ typedef struct {
     int type;
     /* See zopfli.h. */
     ZopfliOptions options;
+    unsigned int no_warn : 1;
 }
 gzip_zopfli_t;
 
@@ -23,6 +24,16 @@ gzip_zopfli_set (gzip_zopfli_t * gz, SV * key_sv, SV * value)
     STRLEN key_len;
     key = SvPV (key_sv, key_len);
 	
+    if (CMP(key, no_warn)) {
+	if (SvTRUE (value)) {
+	    gz->no_warn = 1;
+	}
+	else {
+	    gz->no_warn = 0;
+	}
+	return;
+    }
+
     if (CMP(key, numiterations)) {
 	int n;
 	if (! SvIOK (value)) {
@@ -63,7 +74,9 @@ gzip_zopfli_set (gzip_zopfli_t * gz, SV * key_sv, SV * value)
 	warn ("Unknown compression type '%s'", type);
 	return;
     }
-    warn ("Unknown option '%s'", key);
+    if (! gz->no_warn) {
+	warn ("Unknown option '%s'", key);
+    }
     return;
 }
 
