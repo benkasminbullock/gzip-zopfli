@@ -4,8 +4,9 @@
 #include "ppport.h"
 
 #ifdef WIN32
-#undef malloc
 #undef free
+#undef malloc
+#undef realloc
 #endif /* def WIN32 */
 
 #include "zopfli-one.c"

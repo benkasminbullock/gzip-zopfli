@@ -41,9 +41,9 @@ Perl. Please note that the Zopfli does not offer decompression.
 
 =head1 FUNCTIONS
 
-=head2 ZopfliCompress
+=head2 zopfli_compress
 
-    my $out = ZopfliCompress ($in, %options);
+    my $out = zopfli_compress ($in, %options);
 
 Compress C<$in> into C<$out>. The possible options are as follows:
 
@@ -51,30 +51,44 @@ Compress C<$in> into C<$out>. The possible options are as follows:
 
 =item blocksplitting
 
-    my $out = ZopfliCompress ($in, blocksplitting => 0);
+    my $out = zopfli_compress ($in, blocksplitting => 0);
 
 Boolean. Apply blocksplitting or not? Default value is true.
 
 =item blocksplittingmax
 
-    my $out = ZopfliCompress ($in, blocksplittingmax => 0);
+    my $out = zopfli_compress ($in, blocksplittingmax => 0);
 
 Maximum number of blocks to split into. Default is 15. Set to 0 for
 unlimited.
 
 =item numiterations
 
-    my $out = ZopfliCompress ($in, numiterations => 1);
+    my $out = zopfli_compress ($in, numiterations => 1);
 
 Number of iterations. Default value is 15.
 
 =item type
 
-    my $out = ZopfliCompress ($in, type => 'zlib');
+    my $out = zopfli_compress ($in, type => 'zlib');
 
 Type of compression. Either C<gzip> (the default), C<zlib>, or C<deflate>.
 
 =back
+
+=head2 zopfli_compress_file
+
+    my $out = zopfli_compress_file (in => "file");
+
+Compress from one file to another file:
+
+    zopfli_compress_file (in => $file, out => "$file.gz");
+
+Compress from data to a file:
+
+    zopfli_compress_file (from => $data, out => 'compressed-file.gz');
+
+It also accepts all the same options as L</zopfli_compress>.
 
 =head1 SEE ALSO
 
@@ -109,6 +123,16 @@ Gzip compression and decompression with the new libdeflate library.
 =item L<Gzip::Faster>
 
 Alternative interface to zlib.
+
+=back
+
+=item Other
+
+=over
+
+=item Comparison of gzip compressions
+
+L<https://github.com/benkasminbullock/gzip-compare>
 
 =back
 
